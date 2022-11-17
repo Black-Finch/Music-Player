@@ -2,6 +2,7 @@
 
 # Description
 Simple music player..
+
 ![screenshot](https://user-images.githubusercontent.com/99529701/202468226-3cd23516-88c2-4720-944b-3642f0f8f1ea.png)
 
 ## Features
@@ -14,7 +15,7 @@ Simple music player..
 6. Shuffle / 10s skip backward / previous / play/pause / next / 10s skip forward / add to favorites / repeat
 
 ## Requirements
-'''python
+```python
 python3
 glob
 mutagen
@@ -22,16 +23,16 @@ os
 pygame
 random
 tkinter
-'''
+```
 
 ## Usage
 Simply download all the files into a folder, install the requirements, then run the main.py file by typing into the terminal:
-'''python
+```python
 pip install mutagen
 pip install pygame
 pip install tkinter
 python3 main.py
-'''
+```
 
 ## Notes
 App may contains bugs..
