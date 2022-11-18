@@ -3,6 +3,7 @@ from tkinter import filedialog
 from tkinter import messagebox
 from tkinter import ttk
 import os
+import platform
 import glob
 import pygame as pg
 import random
@@ -27,9 +28,14 @@ playlist = {}
 playlist_favorite = {}
 song_formats = (("MP3 Files", "*.mp3"), ("M4A Files", "*.m4a"), ("FLAC Files", "*.flac"),
                 ("MP4 Files", "*.mp4"), ("WAV Files", "*.wav"), ("AAC Files", "*.aac"))
+os_ = platform.system()
 username = os.getlogin()
-computermusic_dir = "c:\\users\\" + username + "\\music"
-
+if os_ == "Windows":
+  computermusic_dir = "c:\\users\\" + username + "\\music"
+elif os_ == "Linux":
+  computermusic_dir = "/home/" + username + "/Music"
+else:
+  exit(0)
 
 class Scale(ttk.Scale):
     """a type of Scale where the left click is hijacked to work like a right click"""
@@ -63,8 +69,11 @@ def strip_song(song):
 def find_song(song_box):
     computermusic_songs = []
     for song_format in song_formats:
-        files = glob.glob(computermusic_dir + "\\**\\" +
-                          song_format[1], recursive=True)
+        if os_ == "Windows":
+            files = glob.glob(computermusic_dir + "\\**\\" +
+                            song_format[1], recursive=True)
+        else:
+            files = glob.glob(computermusic_dir + "/**/" + song_format[1], recursive=True)
         computermusic_songs += files
 
     for song in computermusic_songs:
